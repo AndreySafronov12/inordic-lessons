@@ -1,7 +1,6 @@
 package org.example.l6;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +30,7 @@ public class Task2 {
         int max = list.get(0);
 
         for (int i = 0; i < list.size(); i++) {
-            sum = sum + list.get(i);
+            sum += list.get(i);
             if (list.get(i) < min) min = list.get(i);
             if (list.get(i) > max) max = list.get(i);
         }
