@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Task2 {
+public class MinMaxAverage {
     public static void main(String[] args) {
         System.out.print("Введите количество элементов: ");
         int num = new Scanner(System.in).nextInt();
 
-        List<Integer> list = getArray(num);
+        List<Integer> list = inputArray(num);
 
         getAvrgMinMax(list);
     }
 
-    public static List<Integer> getArray (int a) {
+    public static List<Integer> inputArray(int a) {
         List<Integer> list = new ArrayList<> ();
         var scanner = new Scanner(System.in);
         for (int i = 0; i < a; i++) {
