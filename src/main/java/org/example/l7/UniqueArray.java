@@ -31,11 +31,11 @@ public class UniqueArray {
     public static List<Integer> getUniqueList (List<Integer> list) {
         List<Integer> uniqueList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            int temp = 0;
+            boolean flag = false;
             for (int j = 0; j < uniqueList.size(); j++) {
-                if (list.get(i) == uniqueList.get(j)) temp++;
+                if (list.get(i) == uniqueList.get(j)) flag = true;
             }
-            if (temp == 0) uniqueList.add(list.get(i));
+            if (!flag) uniqueList.add(list.get(i));
         }
         return uniqueList;
     }
