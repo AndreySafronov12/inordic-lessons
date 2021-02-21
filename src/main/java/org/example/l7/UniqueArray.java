@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class uniqueArray {
+public class UniqueArray {
     public static void main(String[] args) {
         System.out.print("Введите количество элементов: ");
         int num = new Scanner(System.in).nextInt();
