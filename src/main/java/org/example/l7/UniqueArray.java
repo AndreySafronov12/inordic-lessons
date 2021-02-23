@@ -11,11 +11,17 @@ public class UniqueArray {
 
         List<Integer> list = inputArray(num);
 
-        System.out.print("Уникальные элементы списка: ");
-        System.out.println(getUniqueList(list));
+        System.out.print("Быстрая сортировка: ");
+        System.out.println(quickSort(list, 0, list.size() - 1));
 
-        System.out.print("Отсортированный список: ");
+        System.out.print("Сортировка методом пузырька: ");
         System.out.println(getSortList(list));
+
+        System.out.print("Удаление повторяющихся элементов из отсортированного списка :");
+        System.out.println(returnSetList(quickSort(list, 0, list.size() - 1)));
+
+        System.out.print("Уникальные элементы списка без сортировки: ");
+        System.out.println(getUniqueList(list));
     }
 
     public static List<Integer> inputArray(int a) {
@@ -41,15 +47,57 @@ public class UniqueArray {
     }
 
     public static List<Integer> getSortList (List<Integer> list) {
-        for (int i = 0; i < (list.size() - 1); i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(j) < list.get(i)) {
-                    int swap = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, swap);
+        List<Integer> tempSortList = new ArrayList<>(list);
+        for (int i = 0; i < (tempSortList.size() - 1); i++) {
+            for (int j = i + 1; j < tempSortList.size(); j++) {
+                if (tempSortList.get(j) < tempSortList.get(i)) {
+                    int swap = tempSortList.get(i);
+                    tempSortList.set(i, tempSortList.get(j));
+                    tempSortList.set(j, swap);
                 }
             }
         }
-        return list;
+        return tempSortList;
+    }
+
+    public static List<Integer> quickSort(List<Integer> list, int low, int high) {
+        List<Integer> sortList = new ArrayList<>(list);
+        if (sortList.size() == 0) return sortList;
+        if (low >= high) return sortList;
+
+        int middle = low + (high - low) / 2;
+        int sup = sortList.get(middle);
+
+        int i = low;
+        int j = high;
+        while (i <= j) {
+            while (sortList.get(i) < sup) i++;
+            while (sortList.get(j) > sup) j--;
+
+            if (i <= j) {
+                int temp = sortList.get(i);
+                sortList.set(i, sortList.get(j));
+                sortList.set(j, temp);
+                i++;
+                j--;
+            }
+        }
+
+        if (low < j) sortList = quickSort(sortList, low, j);
+        if (high > i) sortList = quickSort(sortList, i, high);
+        return sortList;
+    }
+
+    public static List<Integer> returnSetList(List<Integer> list) {
+        List<Integer> tempList = new ArrayList<>();
+        int temp = list.get(0);
+        tempList.add(list.get(0));
+        for(Integer a: list) {
+            if (temp != a) {
+                tempList.add(a);
+                temp = a;
+            }
+        }
+        return tempList;
     }
 }
