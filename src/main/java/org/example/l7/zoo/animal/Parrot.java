@@ -7,11 +7,15 @@ public class Parrot extends Animal {
         super(name);
     }
 
-    public void say(String sayToParrot) throws InterruptedException {
+    public void say(String sayToParrot) {
         int n = new Random().nextInt(10);
         for (int i = 0; i < n; i++) {
             System.out.println("- " + sayToParrot);
-            Thread.sleep(500);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

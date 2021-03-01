@@ -1,8 +1,12 @@
 package org.example.l7.zoo.animal;
 
-import java.util.Random;
+import org.example.l7.zoo.exceptions.SwimmException;
+import org.example.l7.zoo.interfaces.Swimming;
 
-public class Goose extends Animal{
+import java.util.Random;
+import java.util.Scanner;
+
+public class Goose extends Animal implements Swimming {
     public Goose(String name) {
         super(name);
     }
@@ -33,5 +37,17 @@ public class Goose extends Animal{
                 eat("корм");
                 break;
         }
+    }
+
+    @Override
+    public void swim(String place) {
+        place = new Scanner(System.in).nextLine();
+        if (!place.equalsIgnoreCase("пруд"))
+            try {
+                throw new SwimmException("Тут нельзя плавать!!!");
+            }   catch (SwimmException e) {
+                System.out.println("rerer");
+            }
+        System.out.println("Плавает");
     }
 }

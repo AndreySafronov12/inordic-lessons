@@ -24,5 +24,7 @@ public class VisitZoo {
         Parrot kesha = new Parrot("Кеша");
         System.out.print("Скажите что-нибудь попугаю " + kesha.getName() + ":");
         kesha.say(new Scanner(System.in).nextLine());
+
+        martin.swim("Болото");
     }
 }
