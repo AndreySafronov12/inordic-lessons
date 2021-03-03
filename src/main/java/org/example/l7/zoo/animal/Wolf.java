@@ -19,4 +19,9 @@ public class Wolf extends Animal {
     public void action() {
         System.out.println(this.getName() + " сидит в конуре");
     }
+
+    @Override
+    public void eat(String food) {
+        System.out.println(this.getName() + " съел " + food);
+    }
 }

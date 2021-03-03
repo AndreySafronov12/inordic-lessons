@@ -23,4 +23,9 @@ public class Lion extends Animal {
     public void attack(Animal anotherAnimal) {
         System.out.println(this.getName() + " напал на " + anotherAnimal.getName());
     }
+
+    @Override
+    public void eat(String food) {
+        System.out.println(this.getName() + " съел " + food);
+    }
 }

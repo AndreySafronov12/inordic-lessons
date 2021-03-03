@@ -19,4 +19,9 @@ public class Snake extends Animal {
     public void action() {
         System.out.println(this.getName() + " свисает с ветки");
     }
+
+    @Override
+    public void eat(String food) {
+        System.out.println(this.getName() + " съел " + food);
+    }
 }

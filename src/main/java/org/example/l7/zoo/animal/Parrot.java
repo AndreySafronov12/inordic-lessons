@@ -7,6 +7,11 @@ public class Parrot extends Animal {
         super(name);
     }
 
+    @Override
+    public void say() {
+        System.out.println(this.getName() + " хороший!");
+    }
+
     public void say(String sayToParrot) {
         int n = new Random().nextInt(10);
         for (int i = 0; i < n; i++) {
@@ -27,5 +32,10 @@ public class Parrot extends Animal {
     @Override
     public void action() {
         System.out.println(this.getName() + " свисает с ветки");
+    }
+
+    @Override
+    public void eat(String food) {
+        System.out.println(this.getName() + " съел " + food);
     }
 }
