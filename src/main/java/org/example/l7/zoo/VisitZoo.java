@@ -11,6 +11,9 @@ public class VisitZoo {
         Goose martin = new Goose("Мартин");
         martin.action();
 
+        Wolf semen = new Wolf("Семен");
+        semen.sleep(3);
+
         Lion newBornLion = new Lion("???");
         newBornLion.setName("Симба");
         newBornLion.action();
@@ -31,7 +34,7 @@ public class VisitZoo {
         try {
             martin.swim(place);
         }
-        catch (SwimmException e) {
+        catch (SwimmingException e) {
             e.printStackTrace();
         }
 
@@ -40,7 +43,7 @@ public class VisitZoo {
         try {
             martin.eat(new Scanner(System.in).nextLine());
         }
-        catch (EatException e) {
+        catch (EatingException e) {
             System.err.println(e);
         }
 

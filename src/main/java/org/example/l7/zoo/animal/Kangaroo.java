@@ -1,6 +1,6 @@
 package org.example.l7.zoo.animal;
 
-import org.example.l7.zoo.exceptions.EatException;
+import org.example.l7.zoo.exceptions.EatingException;
 
 public class Kangaroo extends Animal {
     public Kangaroo(String name) {
@@ -37,7 +37,7 @@ public class Kangaroo extends Animal {
     @Override
     public void eat(String food) {
         if (food.equalsIgnoreCase("шоколадка"))
-            throw new EatException("Нельзя давать шоколадку!");
+            throw new EatingException("Нельзя давать шоколадку!");
         else
             System.out.println(this.getName() + " съел " + food);
     }
