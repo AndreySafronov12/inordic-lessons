@@ -2,9 +2,11 @@ package org.example.l7.zoo;
 
 import org.example.l7.zoo.animal.Animal;
 import org.example.l7.zoo.exceptions.AviaryOverflowException;
+import org.example.l7.zoo.exceptions.NoSuchAnimalException;
 import org.example.l7.zoo.exceptions.NotUniqueAnimalException;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class Aviary {
@@ -55,7 +57,14 @@ public class Aviary {
     }
 
     public void deleteAnimalFromAviary(Animal animal) {
-        this.animalsInTheAviary.remove(animal);
+        if (!animalsInTheAviary.contains(animal))
+            try {
+                throw new NoSuchAnimalException("Такого животного в вольере нет!");
+            }
+            catch (NoSuchAnimalException e) {
+                System.err.println(e);
+            }
+        else this.animalsInTheAviary.remove(animal);
     }
 
     public void getAnimalsFromAviary() {
