@@ -5,6 +5,7 @@ import org.example.l7.zoo.exceptions.AviaryOverflowException;
 import org.example.l7.zoo.exceptions.NoSuchAviaryException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class AviaryArray {
@@ -80,5 +81,13 @@ public class AviaryArray {
                 System.err.println(e);
             }
         } else aviaryArray.get(index).getAnimalsFromAviary();
+    }
+
+    public void sortAviaryArrayBySize() {
+        aviaryArray.sort(Comparator.comparing(Aviary::getAviarySize));
+    }
+
+    public void getAviaries() {
+        System.out.println(aviaryArray);
     }
 }

@@ -75,6 +75,8 @@ public class Aviary {
     public String toString() {
         return "Aviary{" +
                 "nameOfAviary='" + nameOfAviary + '\'' +
+                ", aviarySize=" + aviarySize +
+                ", animalsInTheAviary=" + animalsInTheAviary +
                 '}';
     }
 

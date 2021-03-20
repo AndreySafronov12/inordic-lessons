@@ -22,6 +22,8 @@ public class ClassWork14 {
         }
     };
 
+    Animal elephant = System.out::println;
+
     public static void main(String[] args) {
         Animal bird = System.out::println;
         bird.say("hallo");

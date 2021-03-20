@@ -46,5 +46,9 @@ public class VisitZoo2 {
         aviaryArray.addAnimal(igor, aviary4);
 
         aviaryArray.deleteAnimal(vasily, aviary1);
+
+        aviaryArray.getAviaries();
+        aviaryArray.sortAviaryArrayBySize();
+        aviaryArray.getAviaries();
     }
 }
