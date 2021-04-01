@@ -6,7 +6,8 @@ public class Philosopher extends Thread {
     private String name;
     private Fork leftFork;
     private Fork rightFork;
-    public static Semaphore allForks = new Semaphore(5);
+    public static Semaphore blockForks = new Semaphore(1);
+    private int hungry = 1;
 
     public Philosopher(String name, Fork leftFork, Fork rightFork) {
         this.name = name;
@@ -27,68 +28,42 @@ public class Philosopher extends Thread {
 
         leftFork.getIsTaken().release();
         rightFork.getIsTaken().release();
+        hungry--;
     }
 
     public void think() {
+        System.out.println(this.name + " решил поразмышлять");
+        try {
+            sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void run() {
-        //System.out.println(this.name + " решил поесть");
 
         do {
             try {
-                allForks.acquire(2);
+                blockForks.acquire();
+                if ((leftFork.getIsTaken().availablePermits() == 1) && (rightFork.getIsTaken().availablePermits() == 1)) {
+
+                    leftFork.getIsTaken().acquire();
+                    System.out.println(this.name + " занял левую вилку");
+                    rightFork.getIsTaken().acquire();
+                    System.out.println(this.name + " занял правую вилку");
+                    blockForks.release();
+                    eat();
+                } else {
+                    blockForks.release();
+                    //think();
+                }
+
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            /*
-
-            if ((leftFork.getIsTaken().tryAcquire())) {
-                try {
-                    rightFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял правую вилку");
-                    leftFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял левую вилку");
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                eat();
-            }
-            if ((rightFork.getIsTaken().tryAcquire())) {
-                try {
-                    leftFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял левую вилку");
-                    rightFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял правую вилку");
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                eat();
-            }
-
-             */
-
-            if ((leftFork.getIsTaken().availablePermits() == 1) && (rightFork.getIsTaken().availablePermits() == 1)) {
-                try {
-
-                    leftFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял левую вилку");
-                    rightFork.getIsTaken().acquire();
-                    System.out.println(this.name + " занял правую вилку");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                eat();
-            }
-
-            allForks.release(2);
-
-        } while ((leftFork.getIsTaken().availablePermits() != 1) && (rightFork.getIsTaken().availablePermits() != 1));
-
+        } while (hungry > 0);
     }
 }
